@@ -1,0 +1,192 @@
+#features {
+    background-color: #051c46;
+    color: #fff;
+    width : 100%;
+}
+
+.feature-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.feature {
+    text-align: center;
+    margin: 10px;
+}
+
+#page-header {
+    background-image: url("../img/banner/b1.jpg");
+    width: 100%;
+    height: 20vh;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    max-width: 70%;
+    margin: 40px auto;
+}
+
+#page-header h2,
+#page-header p {
+    color: #fff;
+}
+
+#pagination {
+    text-align: center;
+    padding-top: 0;
+}
+
+#pagination a {
+    text-decoration: none;
+    background-color: #088178;
+    padding: 5px 10px;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+#pagination a i {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+#filters {
+    padding: initial;
+}
+
+#filters h3 {
+    font-size: 1.5em;
+    color: #051c46;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+#filters form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    padding-top: 18px;
+}
+
+#filters select {
+    padding: 10px;
+    border: none;
+    /* border-radius: 6px; */
+    /* width: 50%; */
+    font-size: 0.8em;
+    background-color: #fff;
+}
+
+#filters select:hover {
+    background-color: #051c46;
+    color: #fff;
+    /* transform: scale(1.05);
+    transition: background-color 0.3s ease, color 0.3s ease; */
+}
+
+#filters select:focus {
+    outline: none;
+    background-color: #fff;
+    color: #051c46;
+    transform: scale(1.1); /* Add a larger scale effect on focus */
+}
+
+#filters select option {
+    background-color: #fff; /* Background color for options */
+    color: #000; /* Text color for options */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border: 0px;
+}
+
+#filters select option:hover {
+    background-color: #fff; /* Background color on hover */
+    color: #051c46; /* Text color on hover */
+    transform: scale(1.1);
+}
+
+#filters button {
+    background-color: #051c46;
+    color: #fff;
+    border: none;
+    padding: 10px 17px;
+    height: 38px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#filters button:hover {
+    background-color: #fff;
+    color: #051c46;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    /* #filters h3 {
+        font-size: 1.2em;
+    }
+
+    #filters form {
+        flex-direction: column;
+    }
+
+    #filters select {
+        width: 100%;
+    }
+
+    #filters label {
+        display: block;
+    }
+
+    #filters button {
+        margin-top: 10px;
+    } */
+}
+
+/* Responsive Styles for 477px */
+@media (max-width: 477px) {
+    #filters {
+        display: none; /* Initially hide the form */
+        position: absolute;
+    right: 0;
+    }
+    #filters h3 {
+        font-size: 1em;
+    }
+
+    #filters select {
+        font-size: 0.7em;
+    }
+
+    .filter-mobile {
+        display: flex;
+        justify-content: center;
+    }
+
+    .filter .ahmer {
+        display: flex;
+        margin-right: 10px;
+        cursor: pointer;
+        color: #fff;
+        font-size: 1.5em;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/* Responsive Styles for 1024px */
+@media (max-width: 1024px) {
+    #filters h3 {
+        font-size: 1.4em;
+    }
+
+}

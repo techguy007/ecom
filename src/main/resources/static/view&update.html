@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<!-- Created by CodingLab |www.youtube.com/c/CodingLabYT-->
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ecommerce Website - Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login-Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/453f139144.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="Assets/css/login.css">
+    <link rel="stylesheet" href="Assets/css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- start header  -->
+    <div class="abs">
+        <section id="header">
+            <a href="index.html" class="logo-container"><h4 style="font-size: 33px; font-family: 'Dancing Script', cursive; color: #072763;" class="logo">Prime Menswear<i class="fa-solid fa-shirt" style="font-size: 20px; color: #072763;"></i></h4></a>
+            <div>
+                <ul id="navbar">
+                    <li><a class="active" href="index.html">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="wishlist.html">Wishlist</a></li>
+                    <li><a href="accessories.html">Accessories</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><b><a href="buy1get1.html" class="sale">Sale</a></b></li>
+                    <li id="lg-bag"><a href="cart.html"><i class="fa-solid fa-bag-shopping"></i></a></li>
+                    <li id="lg"><a href="view&update.html"><i class="fa-solid fa-user"></i></a></li>
+                    <li id="lg"><a href="logout.html"><i class="fa-solid fa-sign-out-alt"></i></a></li>
+                    <a href="#" id="close"><i class="fa-solid fa-square-xmark"></i></a>
+                </ul>
+            </div>
+            <div id="mobile">
+                <a href="login.html"><i class="fa-solid fa-user"></i></a>
+                <a href="cart.html"><i class="fa-solid fa-bag-shopping"></i></a>
+                <i id="bar" class="fa-solid fa-bars"></i>
+            </div>
+        </section>
+    </div>
+    <!-- end header  -->
+
+    <div class="container">
+        <br><br>
+        <input type="checkbox" id="flip">
+        <div class="cover">
+            <div class="front">
+                <img src="img/frontImg.jpg" alt="">
+                <div class="text">
+                    <span class="text-1">Super value deals On all products</span>
+                    <span class="text-2">new adventure</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="forms">
+            <div class="form-content">
+                <!-- Show data Form -->
+                <div class="login-form">
+                    <div class="title">Personal Details</div>
+                    <div class="info">
+                        <p><strong>ID:</strong> <span id="userId"></span></p>
+                        <p><strong>Username:</strong> <span id="username"></span></p>
+                        <p><strong>Email:</strong> <span id="email"></span></p>
+                        <p><strong>Password:</strong> <span id="password"></span></p>
+                        <p><strong>Phone Number:</strong> <span id="phone"></span></p>
+                    </div>
+                    <div class="text sign-up-text">Want to edit your data? <label for="flip">Edit Personal Details</label></div>
+                    <div class="title">Order History</div>
+                    <div class="orders-container">
+                        <!-- Order items will be populated here dynamically -->
+                    </div>
+                </div>
+
+                <!-- Edit data Form -->
+                <div class="signup-form">
+                    <div class="title">Edit your data</div>
+                    <form method="PATCH" id="editForm">
+                        <div class="input-boxes">
+                            <div class="input-box">
+                                <i class="fas fa-user"></i>
+                                <input type="text" id="updatedName" name="updatedName" placeholder="Enter your new name">
+                            </div>
+                            <div class="input-box">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" id="updatedEmail" name="updatedEmail" placeholder="Enter your new email">
+                            </div>
+                            <div class="input-box">
+                                <i class="fa-solid fa-phone"></i>
+                                <input type="tel" id="updatedPhone" name="updatedPhone" placeholder="Enter your new phone number">
+                            </div>
+                            <div class="button input-box">
+                                <input type="submit" value="Submit">
+                            </div>
+                            <div class="text sign-up-text">need to see your data <label for="flip">Edit Personal Details</label></div>
+                        </div>
+                    </form>
+                </div>
+                <!-- End Edit data Form -->
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    // Function to fetch user data from API and populate HTML elements
+function fetchAndPopulateUserData() {
+    fetch('/get-a-customer') // Assuming this endpoint returns user data
+        .then(response => response.json())
+        .then(userData => {
+            // Assuming userData is an array and we take the first user data
+            const user = userData[0];
+
+            document.getElementById("userId").innerText = user.id;
+            document.getElementById("username").innerText = user.name;
+            document.getElementById("email").innerText = user.email;
+            document.getElementById("password").innerText = "********"; // Assuming password should not be displayed
+            document.getElementById("phone").innerText = user.phone;
+
+            // Pre-fill input fields with user data
+            document.getElementById("updatedName").value = user.name;
+            document.getElementById("updatedEmail").value = user.email;
+            document.getElementById("updatedPhone").value = user.phone;
+
+            getOrders();
+        })
+        .catch(error => {
+            console.error('Error fetching user data:', error);
+        });
+}
+
+// Call the function to fetch and populate user data
+fetchAndPopulateUserData();
+
+// getOrders();
+function getOrders() {
+    // Fetch order history data from the server
+    const customerId = document.getElementById("userId").innerText;
+    fetch(`/get-all-orders/${customerId}`) // Assuming this endpoint returns order history
+        .then(response => response.json())
+        .then(orders => {
+            const ordersContainer = document.querySelector('.orders-container');
+
+            // Loop through each order and create HTML elements
+            orders.forEach(order => {
+                const orderDiv = document.createElement('div');
+                orderDiv.classList.add('order');
+
+                const orderIdDiv = document.createElement('div');
+                orderIdDiv.classList.add('order-id');
+                orderIdDiv.textContent = 'Order #' + order.id;
+
+                const orderDateDiv = document.createElement('div');
+                orderDateDiv.classList.add('order-date');
+                orderDateDiv.textContent = order.orderDate;
+
+                const orderTotalDiv = document.createElement('div');
+                orderTotalDiv.classList.add('order-total');
+                orderTotalDiv.textContent = 'Total: ' + order.totalAmount;
+
+                const orderStatusDiv = document.createElement('div');
+                orderStatusDiv.classList.add('order-status');
+                orderStatusDiv.textContent = order.status;
+
+                const orderDetailsDiv = document.createElement('div');
+                orderDetailsDiv.classList.add('order-details');
+
+                // Loop through each order item and create HTML elements
+                order.orderItemss.forEach(item => {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.classList.add('order-item');
+
+                    const itemImage = document.createElement('img');
+                    itemImage.src = 'data:image/png;base64,' + item.imageBase64; // Set the image source to the base64 string
+                    // itemImage.alt = item.productBrand; // Set the alt attribute for accessibility
+                    itemImage.width = 60; // Set the width of the image to 10 units
+                    itemImage.height = 60; // Set the height of the image to 10 units
+
+                    const itemInfoDiv = document.createElement('div');
+                    itemInfoDiv.classList.add('item-info');
+
+                    const itemQuantity = document.createElement('p');
+                    itemQuantity.textContent = 'Quantity: ' + item.quantity;
+
+                    const itemPrice = document.createElement('p');
+                    itemPrice.textContent = 'Price: $' + item.price;
+                    
+
+                    itemInfoDiv.appendChild(itemQuantity);
+                    itemInfoDiv.appendChild(itemPrice);
+
+                    itemDiv.appendChild(itemImage);
+                    itemDiv.appendChild(itemInfoDiv);
+
+                    orderDetailsDiv.appendChild(itemDiv);
+                });
+
+                orderDiv.appendChild(orderIdDiv);
+                orderDiv.appendChild(orderDateDiv);
+                orderDiv.appendChild(orderTotalDiv);
+                orderDiv.appendChild(orderStatusDiv);
+                orderDiv.appendChild(orderDetailsDiv);
+                ordersContainer.appendChild(orderDiv);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching order history:', error);
+        });
+}
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+        function updateCustomer() {
+            const name = document.getElementById("updatedName").value;
+            const email = document.getElementById("updatedEmail").value;
+            const phone = document.getElementById("updatedPhone").value;
+
+            const updatedData = { name: name, email: email, phone: phone };
+
+            const customerId = document.getElementById("userId").innerText; // Get user ID from HTML element
+
+            fetch(`/update-a-customer/${customerId}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(updatedData),
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to update customer');
+                    }
+                    return response.json(); // Parse the JSON response
+                })
+                .then(updatedCustomer => {
+                    // Assuming you want to update the displayed user data after successful update
+                    document.getElementById("username").innerText = updatedCustomer.name;
+                    document.getElementById("email").innerText = updatedCustomer.email;
+                    document.getElementById("phone").innerText = updatedCustomer.phone;
+
+                    // Show success message
+                    alert(`Customer updated successfully`);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        // Add event listener to the form submission
+        document.getElementById("editForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent form submission
+            updateCustomer(); // Call the updateCustomer function
+            logout(); // Call the logout function
+            window.location.href = 'index.html'; // Redirect to index.html
+        });
+    });
+
+    function logout() {
+        fetch('/logout', {
+            method: 'GET'
+        })
+            .then(response => response.text())
+            .then(data => {
+                console.log(data);
+                // Redirect to home page or perform other actions on successful logout
+                window.location.href = "/index.html";
+            })
+            .catch(error => {
+                console.log("Logout failed: " + error);
+            });
+
+        sessionStorage.clear();
+    }
+</script>

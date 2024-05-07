@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin-Dashboard</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/453f139144.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="Assets/css/admin.css">
+    </head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <ul>
+                <li>
+                    <a href="admin.html">
+                        <i class="fa-solid fa-table-columns"></i>
+                        <div class="title">Dashboard</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="products.html">
+                        <i class="fas fa-box"></i>
+                        <div class="title">Products</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="users.html">
+                        <i class="fas fa-users"></i>
+                        <div class="title">Users</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="orders.html">
+                        <i class="fas fa-shopping-cart"></i>
+                        <div class="title">Orders</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <div class="title">Logout</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="main">
+            <div class="top-bar">
+                <div class="user">
+                    <h3>Hello, Admin</h3>
+                </div>
+            </div>
+            <div class="cards">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="number" id="total_users"><script type="module" src="Assets/js/counters.js"></script></div>
+                        <div class="card-name">Total Users</div>
+                    </div>
+                    <div class="icon-box">
+                        <i class="fas fa-users"></i>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="number" id="total_products"><script type="module" src="Assets/js/counters.js"></script></div>
+                        <div class="card-name">Total Products</div>
+                    </div>
+                    <div class="icon-box">
+                        <i class="fas fa-box"></i>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="number"id="total_orders"><script type="module" src="Assets/js/counters.js"></script></div>
+                        <div class="card-name">Total Orders</div>
+                    </div>
+                    <div class="icon-box">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="number"id="total_earnings"><script type="module" src="Assets/js/counters.js"></script></div>
+                        <div class="card-name">Earnings</div>
+                    </div>
+                    <div class="icon-box">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="tables">
+                <div class="total-orders">
+                    <div class="heading">
+                        <h2>Recent Orders</h2>
+                        <a href="orders.html" class="btn">View All</a>
+                    </div>
+                    <table class="orders-table">
+                        <thead>
+                            <td>Order ID</td>
+                            <td>Customer Phone</td>
+                            <td>Order Date</td>
+                            <td>Total Price</td>
+                            <td>Status</td>
+                            <td>Address</td>
+                        </thead>
+                        <tbody>
+                            <script type="module" src="Assets/js/fetchingOrders.js"></script>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="new-users">
+                    <div class="heading">
+                        <h2>New Users</h2>
+                        <a href="users.html" class="btn">View All</a>
+                    </div>
+                    <table class="users">
+                        <thead>
+                            <td>ID</td>
+                            <td>Name</td>
+                            <td>Email</td>
+                            <td>Phone No</td>
+                        </thead>
+                        <tbody>
+                            <script type="module" src="Assets/js/fetchingCustomers.js"></script>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="all-products">
+                    <div class="heading">
+                        <h2>Total Products</h2>
+                        <a href="products.html" class="btn">View All</a>
+                    </div>
+                    <table class="products">
+                        <thead>
+                            <td>Product ID</td>
+                            <td>Brand</td>
+                            <td>Description</td>
+                            <td>Price</td>
+                            <td>Rating</td>
+                        </thead>
+                        <tbody>
+                            <script type="module" src="Assets/js/fetchingProData.js"></script>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="total-orders">
+                    <div class="heading">
+                        <h2>Roles</h2>
+                        <a href="roles.html" class="btn">View All</a>
+                    </div>
+                    <table class="roles">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Role</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>    
+                            <!-- <script type="module" src="Assets/js/fetchingRole.js"></script> -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+       </div>
+    </div>
+</body>
+</html>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        fetch('/get-roles')
+            .then(response => response.json())
+            .then(data => {
+                const tableBody = document.querySelector('.roles tbody');
+                data.forEach(customerDTO => {
+                    const row = `
+                        <tr>
+                            <td>${customerDTO.id}</td>
+                            <td>${customerDTO.name}</td>
+                            <td>${customerDTO.role}</td>
+                            <td>
+                                <button class="edit-button">
+                                    <i class="fas fa-pen"></i>
+                                </button>
+                            </td>
+                        </tr>`;
+                    tableBody.innerHTML += row;
+                });
+
+                // Add event listener to dynamically created buttons
+                const editButtons = document.querySelectorAll('.edit-button');
+                editButtons.forEach(button => {
+                    button.addEventListener('click', confirmAndExecute);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    });
+
+    function confirmAndExecute(event) {
+    var confirmation = confirm("Are you sure you want to make this user an Admin?");
+    if (confirmation) {
+        // Retrieve the customer name from the table row
+        var customerName = event.target.closest('tr').querySelector('td:nth-child(2)').textContent;
+        
+        // Send an AJAX request to the backend with the username
+        fetch('/get_roles?username=' + encodeURIComponent(customerName), {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('Failed to update customer role');
+            }
+        })
+        .then(data => {
+            // Handle the response from the backend (if needed)
+            alert("Customer role updated successfully");
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert("Failed to update customer role");
+        });
+    }
+}
+
+</script>

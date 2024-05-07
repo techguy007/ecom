@@ -1,0 +1,119 @@
+
+
+
+<!DOCTYPE html>
+<!-- Created by CodingLab |www.youtube.com/c/CodingLabYT-->
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout-Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/453f139144.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="Assets/css/index.css">
+    <link rel="stylesheet" href="Assets/css/checkout.css">
+</head>
+
+<body>
+  <!-- start header  -->
+  <div class="abs">
+  <section id="header">
+        <a href="index.html" class="logo-container"><h4 style="font-size: 33px; font-family: 'Dancing Script', cursive; color: #072763;" class="logo">Prime Menswear<i class="fa-solid fa-shirt" style="font-size: 20px; color: #072763;"></i></h4></a>
+        <div>
+            <ul id="navbar">
+                <li><a class="active" href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="wishlist.html">Wishlist</a></li>
+                <li><a href="accessories.html">Accessories</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><b><a href="buy1get1.html" class="sale">Sale</a></b></li>
+                <li id="lg-bag"><a href="cart.html"><i class="fa-solid fa-bag-shopping"></i></a></li>
+
+                <li id="lg"><a href="view&update.html"><i class="fa-solid fa-user"></i></a></li><li id="lg"><a href="logout.html"><i class="fa-solid fa-sign-out-alt"></i></a></li></form>
+                <a href="#" id="close"><i class="fa-solid fa-square-xmark"></i></a>
+            </ul>
+        </div>
+        <div id="mobile">
+            <a href="login.html"><i class="fa-solid fa-user"></i></a>
+            <a href="cart.html"><i class="fa-solid fa-bag-shopping"></i></a>
+            <i id="bar" class="fa-solid fa-bars"></i>
+        </div>
+    </section>
+  </div>
+  <!-- ens header  -->
+  <!-- <div id="title">Shipping</div> -->
+  <form>
+  <div class="con"> <!--start-->
+  <br><br>
+    <div class="product-card">
+      <div id="title">Shipping</div>
+
+      <div id="cc">
+        <div id="kady" class="forms">
+          <div class="form-content">
+            <div class="login-form">
+              <form action="#">
+                <div class="input-boxes">
+                  <div class="input-box">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" id="username" disabled>
+                  </div>
+                  <div class="input-box">
+                    <i class="fas fa-envelope"></i>
+                    <input type="text" id="email"  disabled>
+                  </div>
+                  <div class="input-box">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <input type="text" id="address" name = "address" placeholder="Enter Your Address" required>
+                  </div>
+                  <div class="input-box">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <input type="text" id="additionalInformation" name = "AI"placeholder="Enter Additional information">
+                  </div>
+                  <div id ="ts" class="input-box">
+                  <input type="radio" name="payment" value="cash" style="cursor: pointer;" required>
+                  <label for="cash" id="cash">Cash</label><br>
+                  <input type="radio" name="payment" value="visa" style="cursor: pointer;" required>
+                  <label for="visa" id="visa">Visa</label><br>
+                </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+          
+          <div class="nn">
+          </div>
+    </div>
+    <div id="title">Order summary</div>
+    <div id="total">
+      <p id="bb"><b>Subtotal amount</b></p>
+      <p id="subtotal-checkout"><b></b></p>
+    </div>
+    <div id="total">
+      <p id="bb"><b>taxes</b></p>
+      <p id="tax-checkout"><b>$ 0.1</b></p>
+    </div>
+    <div id="total">
+      <p id="bb"><b>Total amount</b></p>
+      <p id="total-checkout"><b></b></p>
+    </div>
+    <div class="button">
+    <div class="button-layer"></div>
+    <button type="submit" id="placeOrderButton">Place Order</button>
+    </div>
+  </div>
+  </div> <!--ns container  -->
+  </form>
+        <script src="Assets/js/script.js"></script>
+        <script src="Assets/js/checkout.js"></script>
+</body>
+</html>

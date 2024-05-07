@@ -1,0 +1,172 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/453f139144.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="Assets/css/adminTables.css">
+    </head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <ul>
+                <li>
+                    <a href="admin.html">
+                        <i class="fa-solid fa-table-columns"></i>
+                        <div class="title">Dashboard</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="products.html">
+                        <i class="fas fa-box"></i>
+                        <div class="title">Products</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="users.html">
+                        <i class="fas fa-users"></i>
+                        <div class="title">Users</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="orders.html">
+                        <i class="fas fa-shopping-cart"></i>
+                        <div class="title">Orders</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="admin.html">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <div class="title">Logout</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="main">
+            <div class="top-bar">
+                <div class="user">
+                    <h3>Hello, Admin</h3>
+                </div>
+            </div>
+        <div class="tables">
+            <h2 style="color: #072763;">All Orders</h2>
+            <div class="total-orders">
+                <table class="orders-table">
+                    <thead>
+                        <td>Order ID</td>
+                        <td>Customer Phone</td>
+                        <td>Order Date</td>
+                        <td>Total Price</td>
+                        <td>Status</td>
+                        <td>Address</td>
+                    </thead>
+                    <tbody>
+                        <script type="module" src="Assets/js/fetchingAllOrders.js"></script>           
+                    </tbody>
+        </table>
+        <div id="editModal" class="modal">
+            <div class="modal-content">
+                <i id="closeModal" class="fas fa-times" onclick="closeEditModal()"></i>
+                <!-- Close Button -->
+                <i class="fas fa-times-circle" onclick="closeEditModal()" style="position: absolute; top: 10px; right: 10px; cursor: pointer;"></i>
+        
+                <form id="editForm">
+                    <input type="hidden" id="OrderId" name="id" readonly>
+                    <label for="Status">Status:</label>
+                    <input type="text" id="Status" name="status" placeholder="Status">
+                    <button style="background-color: green; color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer;" 
+                        type="button" onclick="applyEdit1()">Apply</button>
+                </form>
+            </div>
+        </div>
+        
+        
+    </div>
+        </div>
+    </div>
+    <script>
+    function applyEdit1() {
+    const orderId = document.getElementById("OrderId").value;
+    const newStatus = document.getElementById("Status").value;
+    const requestData = {
+        id: orderId,
+        status: newStatus
+    };
+
+    fetch('/update-order/' + orderId, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestData)
+    })
+    .then(response => {
+        if (response.ok) {
+            console.log("Order updated successfully");
+            alert("Status updated");
+            closeEditModal();
+            // Reload or update the content using AJAX
+            updateContent(); // Call a function to update content
+        } else {
+            console.error('Error updating order');
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+// Function to update content using AJAX
+function updateContent() {
+    // Perform AJAX request to fetch updated data and update the page
+    fetch('/get-all-orders')
+        .then(response => response.json())
+        .then(data => {
+            // Update the content of the page with the new data
+            // For example, update the order table with the new orders data
+            const tableBody = document.querySelector('.orders-table tbody');
+            tableBody.innerHTML = ''; // Clear existing content
+            data.forEach(orderDTO => {
+                const row = `
+                    <tr>
+                        <td>${orderDTO.id}</td>
+                        <td>${orderDTO.customerPhone}</td>
+                        <td>${orderDTO.orderDate}</td>
+                        <td>${orderDTO.totalAmount}</td>
+                        <td class="status-cell" data-order-id="${orderDTO.id}">${orderDTO.status}</td>
+                        <td>${orderDTO.address}</td>
+                        <td>
+                            <i class="fas fa-edit" onclick="openEditModal(${orderDTO.id})"></i>
+                        </td>
+                    </tr>`;
+                tableBody.innerHTML += row;
+            });
+            // Add double click event listener to status cells
+            const statusCells = document.querySelectorAll('.status-cell');
+            statusCells.forEach(cell => {
+                cell.addEventListener('dblclick', function () {
+                    const orderId = this.getAttribute('data-order-id');
+                    openEditModal(orderId);
+                });
+            });
+        })
+        .catch(error => console.error('Error:', error));
+}
+function openEditModal(id) {
+    document.getElementById("editModal").style.display = "block";
+    document.getElementById("OrderId").value = id;
+}
+function closeEditModal() {
+    document.getElementById("editModal").style.display = "none";
+}
+
+</script>
+</body>
+</html>

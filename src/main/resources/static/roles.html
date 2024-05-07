@@ -1,0 +1,139 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/453f139144.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="Assets/css/adminTables.css">
+    </head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <ul>
+                <li>
+                    <a href="admin.html">
+                        <i class="fa-solid fa-table-columns"></i>
+                        <div class="title">Dashboard</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="products.html">
+                        <i class="fas fa-box"></i>
+                        <div class="title">Products</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="users.html">
+                        <i class="fas fa-users"></i>
+                        <div class="title">Users</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="orders.html">
+                        <i class="fas fa-shopping-cart"></i>
+                        <div class="title">Orders</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="admin.html">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <div class="title">Logout</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="main">
+            <div class="top-bar">
+                <div class="roles">
+                    <h3>Hello, Admin</h3>
+                </div>
+            </div>
+            <div class="tables">
+                <h2 style="color: #072763;">All Users</h2>
+                <div class="total-orders">
+                    <table class="roles">
+                        <thead>
+                            <td>ID</td>
+                            <td>NAME</td>
+                            <td>ROLE</td>
+                            <td>ACTION</td>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        fetch('/get-all-roles')
+            .then(response => response.json())
+            .then(data => {
+                const tableBody = document.querySelector('.roles tbody');
+                data.forEach(customerDTO => {
+                    const row = `
+                        <tr>
+                            <td>${customerDTO.id}</td>
+                            <td>${customerDTO.name}</td>
+                            <td>${customerDTO.role}</td>
+                            <td>
+                                <button class="edit-button">
+                                    <i class="fas fa-pen"></i>
+                                </button>
+                            </td>
+                        </tr>`;
+                    tableBody.innerHTML += row;
+                });
+
+                // Add event listener to dynamically created buttons
+                const editButtons = document.querySelectorAll('.edit-button');
+                editButtons.forEach(button => {
+                    button.addEventListener('click', confirmAndExecute);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    });
+
+    function confirmAndExecute(event) {
+    var confirmation = confirm("Are you sure you want to make this user an Admin?");
+    if (confirmation) {
+        // Retrieve the customer name from the table row
+        var customerName = event.target.closest('tr').querySelector('td:nth-child(2)').textContent;
+        
+        // Send an AJAX request to the backend with the username
+        fetch('/get_roles?username=' + encodeURIComponent(customerName), {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('Failed to update customer role');
+            }
+        })
+        .then(data => {
+            // Handle the response from the backend (if needed)
+            alert("Customer role updated successfully");
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert("Failed to update customer role");
+        });
+    }
+}
+
+</script>

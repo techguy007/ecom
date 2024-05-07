@@ -1,0 +1,100 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/453f139144.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="Assets/css/adminTables.css">
+    </head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <ul>
+                <li>
+                    <a href="admin.html">
+                        <i class="fa-solid fa-table-columns"></i>
+                        <div class="title">Dashboard</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="products.html">
+                        <i class="fas fa-box"></i>
+                        <div class="title">Products</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="users.html">
+                        <i class="fas fa-users"></i>
+                        <div class="title">Users</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="orders.html">
+                        <i class="fas fa-shopping-cart"></i>
+                        <div class="title">Orders</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="admin.html">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <div class="title">Logout</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="main">
+            <div class="top-bar">
+                <div class="user">
+                    <h3>Hello, Admin</h3>
+                </div>
+            </div>
+            <div class="tables">
+                <h2 style="color: #072763;">All Users</h2>
+                <div class="total-orders">
+                    <table class="users">
+                        <thead>
+                            <td>ID</td>
+                            <td>Name</td>
+                            <td>Email</td>
+                            <td>Phone No</td>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                    <div id="editModal" class="modal">
+                        <div class="modal-content">
+                            <form id="editForm">
+                                <i id="closeModal" class="fas fa-times" onclick="closeEditModal()"></i>
+                                <input id="UserId" name="id">
+                                <label for="Name">Name</label>
+                                <input id="Name" name="name" type="text" placeholder="Name">
+                                <label for="Email">Email</label>
+                                <input id="Email" name="email" type="email" placeholder="Email">
+                                <label for="Phone">Phone No</label>
+                                <input id="Phone" name="phone" type="tel" placeholder="Phone No">
+                                <label for="Status">Status</label>
+                            <button style="background-color: green; color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer;" 
+                            type="submit">Apply</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+        function closeEditModal() {
+            document.getElementById("editModal").style.display = "none";
+        }
+        </script>
+        <script type="module" src="Assets/js/fetchingAllCustomers.js"></script>
+    </body>
+</html>

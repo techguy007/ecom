@@ -1,0 +1,79 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/453f139144.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="Assets/css/adminTables.css">
+    </head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <ul>
+                <li>
+                    <a href="admin.html">
+                        <i class="fa-solid fa-table-columns"></i>
+                        <div class="title">Dashboard</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="products.html">
+                        <i class="fas fa-box"></i>
+                        <div class="title">Products</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="users.html">
+                        <i class="fas fa-users"></i>
+                        <div class="title">Users</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="orders.html">
+                        <i class="fas fa-shopping-cart"></i>
+                        <div class="title">Orders</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="admin.html">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <div class="title">Logout</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="main">
+            <div class="top-bar">
+                <div class="user">
+                    <h3>Hello, Admin</h3>
+                </div>
+            </div>
+            <div class="tables">
+                <h2 style="color: #072763;">All Users</h2>
+                <div class="total-orders">
+                    <table class="products">
+                        <thead>
+                            <td>ID</td>
+                            <td>BRAND</td>
+                            <td>Description</td>
+                            <td>Price</td>
+                            <td>Rating</td>
+                        </thead>
+                        <tbody>
+                            <script type="module" src="Assets/js/fetchingAllProData.js"></script>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

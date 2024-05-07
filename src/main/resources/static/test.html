@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<!-- Created by CodingLab |www.youtube.com/c/CodingLabYT-->
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Ecommerce Website - Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>login-Page</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/453f139144.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="Assets/css/login.css">
+  <link rel="stylesheet" href="Assets/css/index.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <!-- Include jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    /* Add these CSS styles to highlight invalid input fields */
+    input:invalid {
+      border-color: red;
+    }
+
+    input:valid {
+      border-color: green;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- start header  -->
+  <!-- ... (header section omitted for brevity) ... -->
+  <!-- end header  -->
+
+  <div class="container">
+    <br><br>
+    <input type="checkbox" id="flip">
+    <div class="cover">
+      <div class="front">
+        <img src="img/frontImg.jpg" alt="">
+        <div class="text">
+          <span class="text-1">Super value deals On all products</span>
+          <span class="text-2">new adventure</span>
+        </div>
+      </div>
+    </div>
+    <div class="forms">
+      <div class="form-content">
+        <div class="login-form">
+          <div class="title">Login</div>
+          <form id="loginForm" method="POST">
+            <div class="input-boxes">
+              <div class="input-box">
+                <i class="fas fa-envelope"></i>
+                <input type="text" id="loginEmail" name="Email1" placeholder="Enter your email" required>
+              </div>
+              <div class="input-box">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="loginPassword" name="Password1" placeholder="Enter your password" required>
+              </div>
+              <div class="text"><a href="#">Forgot password?</a></div>
+              <div class="button input-box">
+                <input type="submit" value="Submit">
+              </div>
+              <div class="text sign-up-text">Don't have an account? <label for="flip">Signup now</label></div>
+            </div>
+          </form>
+        </div>
+        <div class="signup-form">
+          <div class="title">Signup</div>
+          <div id="signupMessage" style="display: none;">NOW YOU HAVE TO LOGIN</div>
+          <form id="signupForm" action="http://localhost:8080/signup/add" method="post">
+            <div class="input-boxes">
+              <div class="input-box">
+                <i class="fas fa-user"></i>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required minlength="3" maxlength="20" aria-invalid="true">
+              </div>
+              <div class="input-box">
+                <i class="fas fa-envelope"></i>
+                <input type="email" id="signupEmail" name="email" placeholder="Enter your email" required aria-invalid="true">
+              </div>
+              <div class="input-box">
+                <i class="fa-solid fa-phone"></i>
+                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required aria-invalid="true">
+              </div>
+              <div class="input-box">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="signupPassword" name="password" placeholder="Enter your password" required minlength="8" aria-invalid="true">
+              </div>
+              <div class="button input-box">
+                <input type="submit" id="signupSubmit" value="Submit">
+              </div>
+              <div class="text sign-up-text">Already have an account? <label for="flip">Login now</label></div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function updateTable() {
+      var url = "http://localhost:8080/signup";
+      $.ajax({
+        url: url,
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+          console.log(data);
+          // Clear table before updating
+          $("#table tbody").empty();
+          for (var i = 0; i < data.length; i++) {
+            $("#table tbody").append("<tr><td>" + data[i].id + "</td><td>" + data[i].name + "</td><td>" + data[i].description + "</td></tr>");
+          }
+        },
+        error: function() {
+          console.log('error happened');
+        }
+      });
+    }
+
+    updateTable();
+
+    $(document).ready(function() {
+      $("#signupSubmit").click(function(event) {
+        $("#signupSubmit").prop("disabled", true).val("Submitted");
+        $("#signupMessage").text("Welcome, please login.").show();
+      });
+
+      // Reset validation state when the user starts typing
+      $('input').on('input', function() {
+        $(this).attr('aria-invalid', 'false');
+      });
+    });
+  </script>
+</body>
+
+</html>
